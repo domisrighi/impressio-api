@@ -1,0 +1,6 @@
+﻿services:
+  impressioapi.:
+    image: impressioapi.
+    build:
+      context: .
+      dockerfile: Dockerfile

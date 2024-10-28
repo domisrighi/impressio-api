@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Data\\Repositories\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Domain\\Interfaces\\Repositories\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IUnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Domain\\Interfaces\\Repositories\\IUnitOfWork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IAggregateRoot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Domain\\Interfaces\\Repositories\\IAggregateRoot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Repositories\\Repository.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\Repository.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Repositories\\Repository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:12:28.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FuncionarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:12:19.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ObterFuncionarioQuery.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Queries\\ObterFuncionarioQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:11:12.767Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DbConnectionExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Configurations\\DbConnectionExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:10:54.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\Repositories\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IUnitOfWork.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\Repositories\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:10:27.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\Repositories\\IRepository.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\Repositories\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:10:19.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IFuncionarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\Repositories\\IFuncionarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:10:18.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IAggregateRoot.cs",
+              "DocumentMoniker": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IAggregateRoot.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\Repositories\\IAggregateRoot.cs",
+              "ToolTip": "C:\\Users\\Dominike Righi\\Documents\\MY\\impressio-api\\ImpressioApi\\Domain\\Interfaces\\Repositories\\IAggregateRoot.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\Repositories\\IAggregateRoot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T17:10:15.81Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

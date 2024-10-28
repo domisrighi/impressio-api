@@ -1,0 +1,6 @@
+@ImpressioApi__HostAddress = http://localhost:5186
+
+GET {{ImpressioApi__HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
