@@ -3,7 +3,6 @@ using Dapper;
 using ImpressioApi_.Domain.DTO.Queries;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Queries;
-using ImpressioApi_.Infrastructure.Data.Configurations;
 using ImpressioApi_.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,78 +21,52 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
 
   public async Task<PaginacaoResposta<ObterUsuarioResultadoDTO>> ObterUsuario(ObterUsuarioParametrosDTO parametros)
   {
-    var select = @"SELECT
-                    DISTINCT
-                    t_usuario.id_usuario IdUsuario,
-                    t_usuario.nome_usuario Nome,
-                    t_usuario.email_usuario Email,
-                    t_usuario.data_nascimento DataNascimento,
-                    t_usuario.apelido Apelido,
-                    t_usuario.biografia_usuario BiografiaUsuario,
-                    t_usuario.imagem_usuario ImagemUsuario,
-                    t_usuario.publico Publico
-                ";
-    
-    var from = @"FROM
-                  t_usuario t_usuario
-                WHERE
-                  (t_usuario.id_usuario = @IdUsuario OR @IdUsuario IS NULL)
-                  AND (t_usuario.nome_usuario = @NomeUsuario OR NULLIF(@NomeUsuario, '') IS NULL)
-                  AND (t_usuario.email_usuario = @EmailUsuario OR NULLIF(@EmailUsuario, '') IS NULL)
-                  AND (t_usuario.data_nascimento = @DataNascimento OR @DataNascimento IS NULL)
-                  AND (t_usuario.apelido = @Apelido OR NULLIF(@Apelido, '') IS NULL)
-                  AND (t_usuario.biografia_usuario = @BiografiaUsuario OR NULLIF(@BiografiaUsuario, '') IS NULL)
-                  AND (t_usuario.imagem_usuario = @ImagemUsuario OR NULLIF(@ImagemUsuario, '') IS NULL)
-                  AND (t_usuario.publico = @Publico OR @Publico IS NULL)
-                ";
-    
-    var sql = @$"{select}
-                      {from}";
+      var query = await BuscarUsuarios(parametros);
+        var paginacao = new PaginacaoResposta<ObterUsuarioResultadoDTO>(registros: query);
 
-    if (parametros.Paginar)
-    {
-      sql += @" LIMIT @ItensPorPagina
-                OFFSET @ItensIgnorados
-                ";
-    }
+        if (!parametros.Paginar)
+        {
+            return paginacao;
+        }
+
+        var totalDeItens = query.Count();
+
+        paginacao.PreencherPropriedades(
+            totalDeItens: totalDeItens,
+            paginaAtual: parametros.PaginaAtual,
+            itensPorPagina: parametros.ItensPorPagina
+        );
+
+        return paginacao;
+  }
+  private async Task<IEnumerable<ObterUsuarioResultadoDTO>> BuscarUsuarios(ObterUsuarioParametrosDTO parametros)
+  {
+    var sql = @"SELECT 
+                DISTINCT
+                  u.id_usuario AS IdUsuario,
+                  u.nome_usuario AS NomeUsuario,
+                  u.email_usuario AS EmailUsuario,
+                  u.data_nascimento AS DataNascimento,
+                  u.apelido AS Apelido,
+                  u.biografia_usuario AS BiografiaUsuario,
+                  u.imagem_usuario AS ImagemUsuario,
+                  u.publico AS Publico
+                FROM t_usuario AS u
+                WHERE
+                  (@NomeUsuario IS NULL OR u.nome_usuario LIKE CONCAT('%', @NomeUsuario, '%'))
+                  AND (@EmailUsuario IS NULL OR u.email_usuario LIKE CONCAT('%', @EmailUsuario, '%'))
+                  AND (@Apelido IS NULL OR u.apelido LIKE CONCAT('%', @Apelido, '%'))
+                  AND (@Publico IS NULL OR u.publico = @Publico)
+              ";
 
     var filtros = new
     {
-      parametros.IdUsuario,
-      parametros.EmailUsuario,
-      parametros.DataNascimento,
-      parametros.NomeUsuario,
-      parametros.Apelido,
-      parametros.BiografiaUsuario,
-      parametros.ImagemUsuario,
-      parametros.Publico,
-      parametros.ItensPorPagina,
-      ItensIgnorados = parametros.ItensIgnorados()
+      EmailUsuario = parametros.EmailUsuario,
+      NomeUsuario = parametros.NomeUsuario,
+      Apelido = parametros.Apelido,
+      Publico = parametros.Publico
     };
 
-    var result = await _connection.QueryAsync<ObterUsuarioResultadoDTO, ObterUsuarioQuery>(_logger, sql, filtros);
-    var paginacao = new PaginacaoResposta<ObterUsuarioResultadoDTO>(registros: result);
-
-    if (!parametros.Paginar)
-    {
-      return paginacao;
-    }
-
-    var sqlTotal = @$"SELECT COUNT(*)
-                        FROM (
-                        {select}
-                        {from}
-                        ) query
-                    ";
-
-    var totalDeItens = await _connection.QuerySingleAsync<int, ObterUsuarioQuery>(_logger, sqlTotal, filtros);
-
-    paginacao.PreencherPropriedades(
-        totalDeItens: totalDeItens,
-        paginaAtual: parametros.PaginaAtual,
-        itensPorPagina: parametros.ItensPorPagina
-    );
-    
-    return paginacao;
+    return await _connection.QueryAsync<ObterUsuarioResultadoDTO>(sql, filtros);
   }
 }

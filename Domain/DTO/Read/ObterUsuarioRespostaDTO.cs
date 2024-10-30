@@ -9,5 +9,5 @@ public class ObterUsuarioRespostaDTO
     public string? NomeUsuario { get; set; }
     public string? BiografiaUsuario { get; set; }
     public string? ImagemUsuario { get; set; }
-    public bool Publico { get; set; }
+    public bool? Publico { get; set; }
 }

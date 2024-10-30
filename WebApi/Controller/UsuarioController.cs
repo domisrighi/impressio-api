@@ -1,8 +1,6 @@
 using AutoMapper;
 using ImpressioApi_.Application.Commands;
 using ImpressioApi_.Application.Commands.Usuario.Read;
-
-//using ImpressioApi_.Application.Commands.Usuario.Read;
 using ImpressioApi_.Application.Commands.Usuario.Write;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Queries;
@@ -38,9 +36,7 @@ public class UsuarioController : ImpressioController
     }
 
     /// <summary>
-    /// Busca os dados dos Usuários.
-    /// Obs.: É possivel filtrar conforme os campos.
-    /// Caso queira todos os Usuários, basta não passar nenhum filtro.
+    /// Obtém todos os usuários. (É possível filtrar conforme campos informados, caso queira todos os usuários basta não passar nenhum filtro)
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>

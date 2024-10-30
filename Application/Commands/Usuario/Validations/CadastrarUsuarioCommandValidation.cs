@@ -23,4 +23,5 @@ public class CadastrarUsuarioCommandValidation : AbstractValidator<CadastrarUsua
             .NotEmpty()
             .WithMessage("O nome do usuário é obrigatório.");
     }
+    //TODO - Adicionar validação de senha, verificação de email e apelido existentes.
 }
