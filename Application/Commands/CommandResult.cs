@@ -4,6 +4,7 @@ public class CommandResult
 {
     public bool Success { get; set; } = true;
     public List<string> Messages { get; set; } = new();
+    public string? Token { get; set; }
 
     public virtual CommandResult Sucesso()
     {
