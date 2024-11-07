@@ -47,9 +47,6 @@ builder.Services.AddAuthentication(options =>
 
 #endregion
 
-builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
-builder.Services.AddScoped<IObterFuncionarioQuery, ObterFuncionarioQuery>();
-
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
