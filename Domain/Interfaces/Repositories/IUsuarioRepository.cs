@@ -4,5 +4,5 @@ namespace ImpressioApi_.Domain.Interfaces.Repositories;
 
 public interface IUsuarioRepository : IRepository<UsuarioModel>
 {
-
+    Task<UsuarioModel?> ObterPorEmail(string email);
 }

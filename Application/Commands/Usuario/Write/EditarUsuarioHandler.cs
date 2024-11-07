@@ -49,20 +49,37 @@ public class EditarUsuarioHandler: IRequestHandler<EditarUsuarioCommand, Command
                 }
             );
 
-            if (usuario is null)
+            var usuarioDados = usuario.Registros.FirstOrDefault();
+            if (usuarioDados == null)
             {
                 return _result.AdicionarErro("Usuário não encontrado.");
             }
+
+            var usuarioModel = _mapper.Map<UsuarioModel>(usuarioDados);
+
+            usuarioModel.IdUsuario = _request.IdUsuario;
+            usuarioModel.NomeUsuario = !string.IsNullOrWhiteSpace(_request.NomeUsuario) ? _request.NomeUsuario : usuarioModel.NomeUsuario;
+            usuarioModel.EmailUsuario = !string.IsNullOrWhiteSpace(_request.EmailUsuario) ? _request.EmailUsuario : usuarioModel.EmailUsuario;
+            usuarioModel.Apelido = !string.IsNullOrWhiteSpace(_request.Apelido) ? _request.Apelido : usuarioModel.Apelido;
+            usuarioModel.BiografiaUsuario = !string.IsNullOrWhiteSpace(_request.BiografiaUsuario) ? _request.BiografiaUsuario : usuarioModel.BiografiaUsuario;
+            usuarioModel.ImagemUsuario = !string.IsNullOrWhiteSpace(_request.ImagemUsuario) ? _request.ImagemUsuario : usuarioModel.ImagemUsuario;
             
-            var _usuario = _mapper.Map<UsuarioModel>(_request);
-            _usuarioRepository.Update(_usuario);
+            if (!string.IsNullOrWhiteSpace(_request.Senha))
+            {
+                usuarioModel.Senha = _request.Senha;
+            }
             
+            if (_request.Publico.HasValue)
+            {
+                usuarioModel.Publico = _request.Publico.Value;
+            }
+
+            _usuarioRepository.Update(usuarioModel);
             var sucesso = await _usuarioRepository.UnitOfWork.Commit();
             if (!sucesso)
             {
                 return _result.AdicionarErro("Falha ao atualizar usuário.");
             }
-
             return _result.Sucesso("Usuário atualizado com sucesso!");
         }
         finally

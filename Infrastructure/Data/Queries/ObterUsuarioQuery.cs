@@ -21,42 +21,49 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
 
   public async Task<PaginacaoResposta<ObterUsuarioResultadoDTO>> ObterUsuario(ObterUsuarioParametrosDTO parametros)
   {
-      var query = await BuscarUsuarios(parametros);
-        var paginacao = new PaginacaoResposta<ObterUsuarioResultadoDTO>(registros: query);
+    var query = await BuscarUsuarios(parametros);
+    var paginacao = new PaginacaoResposta<ObterUsuarioResultadoDTO>(registros: query);
 
-        if (!parametros.Paginar)
-        {
-            return paginacao;
-        }
-
-        var totalDeItens = query.Count();
-
-        paginacao.PreencherPropriedades(
-            totalDeItens: totalDeItens,
-            paginaAtual: parametros.PaginaAtual,
-            itensPorPagina: parametros.ItensPorPagina
-        );
-
+    if (!parametros.Paginar)
+    {
         return paginacao;
+    }
+
+    var totalDeItens = query.Count();
+
+    paginacao.PreencherPropriedades(
+      totalDeItens: totalDeItens,
+      paginaAtual: parametros.PaginaAtual,
+      itensPorPagina: parametros.ItensPorPagina
+    );
+
+    return paginacao;
   }
+
+
   private async Task<IEnumerable<ObterUsuarioResultadoDTO>> BuscarUsuarios(ObterUsuarioParametrosDTO parametros)
   {
-    var sql = @"SELECT 
-                DISTINCT
-                  u.id_usuario AS IdUsuario,
-                  u.nome_usuario AS NomeUsuario,
-                  u.email_usuario AS EmailUsuario,
-                  u.data_nascimento AS DataNascimento,
-                  u.apelido AS Apelido,
-                  u.biografia_usuario AS BiografiaUsuario,
-                  u.imagem_usuario AS ImagemUsuario,
-                  u.publico AS Publico
-                FROM t_usuario AS u
-                WHERE
-                  (@NomeUsuario IS NULL OR u.nome_usuario LIKE CONCAT('%', @NomeUsuario, '%'))
+    int itensIgnorados = (parametros.PaginaAtual - 1) * parametros.ItensPorPagina;
+
+    var sql = $@"SELECT DISTINCT
+                    u.id_usuario AS IdUsuario,
+                    u.nome_usuario AS NomeUsuario,
+                    u.email_usuario AS EmailUsuario,
+                    u.senha AS Senha,
+                    u.data_nascimento AS DataNascimento,
+                    u.apelido AS Apelido,
+                    u.biografia_usuario AS BiografiaUsuario,
+                    u.imagem_usuario AS ImagemUsuario,
+                    u.publico AS Publico
+                  FROM t_usuario AS u
+                  WHERE
+                    (@NomeUsuario IS NULL OR u.nome_usuario LIKE CONCAT('%', @NomeUsuario, '%'))
                   AND (@EmailUsuario IS NULL OR u.email_usuario LIKE CONCAT('%', @EmailUsuario, '%'))
                   AND (@Apelido IS NULL OR u.apelido LIKE CONCAT('%', @Apelido, '%'))
                   AND (@Publico IS NULL OR u.publico = @Publico)
+                  ORDER BY u.id_usuario
+                  OFFSET @ItensIgnorados ROWS
+                  FETCH NEXT @ItensPorPagina ROWS ONLY
               ";
 
     var filtros = new
@@ -64,7 +71,9 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
       EmailUsuario = parametros.EmailUsuario,
       NomeUsuario = parametros.NomeUsuario,
       Apelido = parametros.Apelido,
-      Publico = parametros.Publico
+      Publico = parametros.Publico,
+      ItensIgnorados = itensIgnorados,
+      ItensPorPagina = parametros.ItensPorPagina
     };
 
     return await _connection.QueryAsync<ObterUsuarioResultadoDTO>(sql, filtros);

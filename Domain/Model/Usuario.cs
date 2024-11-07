@@ -11,6 +11,6 @@ public class UsuarioModel : IAggregateRoot
     public string? NomeUsuario { get; set; }
     public string? BiografiaUsuario { get; set; }
     public string? ImagemUsuario { get; set; }
-    public bool Publico { get; set; } = true; //inicia como true
+    public bool Publico { get; set; } = true;
     public ICollection<ObraArteModel> ObrasArte { get; set; } = new List<ObraArteModel>();
 }

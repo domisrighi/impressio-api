@@ -40,11 +40,11 @@ public class UsuarioController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpPost("ObterUsuario")]
+    [HttpGet("ObterUsuario")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterUsuarioRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> ObterUsuario(ObterUsuarioCommand command)
+    public async Task<IActionResult> ObterUsuario([FromQuery] ObterUsuarioCommand command)
     {
         return Response(await _mediator.Send(command));
     }

@@ -4,7 +4,7 @@ namespace ImpressioApi_.Application.Commands.Usuario.Write;
 
 public class ExcluirUsuarioCommand : Command<CommandResult>
 {
-    public int? IdUsuario { get; set; }
+    public int IdUsuario { get; set; }
 
     public override async Task<bool> Valida()
     {

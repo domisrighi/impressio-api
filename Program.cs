@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using ImpressioApi_.Application.Commands.Usuario.Profile;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Interfaces.Repositories;
 using ImpressioApi_.Infrastructure.Data.Contexts;
@@ -11,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 #region INICIALIZANDO O BANCO DE DADOS
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
@@ -49,6 +49,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
+builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);

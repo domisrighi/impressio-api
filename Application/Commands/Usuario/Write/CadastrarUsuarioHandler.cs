@@ -3,8 +3,6 @@ using AutoMapper;
 using ImpressioApi_.Domain.Interfaces.Repositories;
 using MediatR;
 using ImpressioApi_.Domain.Model;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace ImpressioApi_.Application.Commands.Usuario.Write;
 
@@ -52,7 +50,7 @@ public class CadastrarUsuarioHandler : IRequestHandler<CadastrarUsuarioCommand, 
                 return _result.AdicionarErro("Falha ao cadastrar usuário");
             }
 
-            var token = _tokenService.GenerateToken(usuario.Senha);
+            var token = _tokenService.GenerateToken(usuario.EmailUsuario);
             _result.Sucesso("Usuário cadastrado com sucesso!");
             _result.Token = token;
             
@@ -69,10 +67,6 @@ public class CadastrarUsuarioHandler : IRequestHandler<CadastrarUsuarioCommand, 
 
     private string CriptografarSenha(string senha)
     {
-        using var sha256 = SHA256.Create();
-        var bytes = Encoding.UTF8.GetBytes(senha);
-        var hash = sha256.ComputeHash(bytes);
-
-        return Convert.ToBase64String(hash);
+        return BCrypt.Net.BCrypt.HashPassword(senha);
     }
 }
