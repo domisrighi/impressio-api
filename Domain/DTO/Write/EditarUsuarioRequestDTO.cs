@@ -1,10 +1,9 @@
-namespace ImpressioApi_.Domain.DTO.Queries;
+namespace ImpressioApi_.Domain.DTO.Write;
 
-public class ObterUsuarioResultadoDTO
+public class EditarUsuarioRequestDTO
 {
-    public int? IdUsuario { get; set; }
+    public int IdUsuario { get; set; }
     public string? EmailUsuario { get; set; }
-    public string Senha { get; set; } = String.Empty;
     public DateTime? DataNascimento { get; set; }
     public string? Apelido { get; set; }
     public string? NomeUsuario { get; set; }
