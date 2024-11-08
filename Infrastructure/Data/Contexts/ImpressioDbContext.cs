@@ -8,6 +8,7 @@ namespace ImpressioApi_.Infrastructure.Data.Contexts
     {
         public virtual DbSet<UsuarioModel> Usuarios { get; set; }
         public virtual DbSet<ObraArteModel> ObrasArte { get; set; }
+        public virtual DbSet<ObraFavoritadaModel> ObrasFavoritadas { get; set; }
 
         public ImpressioDbContext(DbContextOptions<ImpressioDbContext> options)
             : base(options)
@@ -44,6 +45,19 @@ namespace ImpressioApi_.Infrastructure.Data.Contexts
                 entity.Property(o => o.IdUsuario).HasColumnName("id_usuario").IsRequired(true);
 
                 entity.HasOne(o => o.Usuario).WithMany(u => u.ObrasArte).HasForeignKey(o => o.IdUsuario).HasConstraintName("fk_usuario_obras_arte").OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<ObraFavoritadaModel>(entity =>
+            {
+                entity.ToTable("t_obra_favoritada");
+                entity.HasKey(f => f.IdObraFavoritada).HasName("pk_obra_favoritada");
+                entity.Property(f => f.IdObraFavoritada).ValueGeneratedOnAdd().HasColumnName("id_obra_favoritada");
+                entity.Property(f => f.IdObraArte).HasColumnName("id_obra_arte").IsRequired(true);
+                entity.Property(f => f.IdUsuario).HasColumnName("id_usuario").IsRequired(true);
+
+                entity.HasOne(f => f.ObraArte).WithMany(o => o.UsuariosFavoritaram).HasForeignKey(f => f.IdObraArte).HasConstraintName("fk_obra_favoritada_obra_arte").OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(f => f.Usuario).WithMany(u => u.ObrasFavoritadas).HasForeignKey(f => f.IdUsuario).HasConstraintName("fk_obra_favoritada_usuario").OnDelete(DeleteBehavior.Cascade);
             });
 
             base.OnModelCreating(modelBuilder);

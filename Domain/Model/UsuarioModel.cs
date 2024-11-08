@@ -13,4 +13,5 @@ public class UsuarioModel : IAggregateRoot
     public string? ImagemUsuario { get; set; }
     public bool Publico { get; set; } = true;
     public ICollection<ObraArteModel> ObrasArte { get; set; } = new List<ObraArteModel>();
+    public virtual ICollection<ObraFavoritadaModel> ObrasFavoritadas { get; set; } = new List<ObraFavoritadaModel>();
 }

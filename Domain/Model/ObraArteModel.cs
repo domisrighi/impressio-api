@@ -12,5 +12,6 @@ namespace ImpressioApi_.Domain.Model
         public int? Downvote { get; set; } = 0;
         public int IdUsuario { get; set; }
         public required UsuarioModel Usuario { get; set; }
+        public virtual ICollection<ObraFavoritadaModel> UsuariosFavoritaram { get; set; } = new List<ObraFavoritadaModel>();
     }
 }

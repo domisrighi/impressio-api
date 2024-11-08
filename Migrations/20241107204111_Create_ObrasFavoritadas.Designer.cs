@@ -3,6 +3,7 @@ using System;
 using ImpressioApi_.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ImpressioApi_.Migrations
 {
     [DbContext(typeof(ImpressioDbContext))]
-    partial class ImpressioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241107204111_Create_ObrasFavoritadas")]
+    partial class Create_ObrasFavoritadas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,12 +91,15 @@ namespace ImpressioApi_.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("id_usuario");
 
+                    b.Property<int?>("ObraArteIdObraArte")
+                        .HasColumnType("integer");
+
                     b.HasKey("IdObraFavoritada")
                         .HasName("pk_obra_favoritada");
 
-                    b.HasIndex("IdObraArte");
-
                     b.HasIndex("IdUsuario");
+
+                    b.HasIndex("ObraArteIdObraArte");
 
                     b.ToTable("t_obra_favoritada", (string)null);
                 });
@@ -167,28 +173,20 @@ namespace ImpressioApi_.Migrations
 
             modelBuilder.Entity("ImpressioApi_.Domain.Model.ObraFavoritadaModel", b =>
                 {
-                    b.HasOne("ImpressioApi_.Domain.Model.ObraArteModel", "ObraArte")
-                        .WithMany("UsuariosFavoritaram")
-                        .HasForeignKey("IdObraArte")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_obra_favoritada_obra_arte");
-
                     b.HasOne("ImpressioApi_.Domain.Model.UsuarioModel", "Usuario")
                         .WithMany("ObrasFavoritadas")
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_obra_favoritada_usuario");
+                        .HasConstraintName("fk_usuario_obras_favoritadas");
+
+                    b.HasOne("ImpressioApi_.Domain.Model.ObraArteModel", "ObraArte")
+                        .WithMany()
+                        .HasForeignKey("ObraArteIdObraArte");
 
                     b.Navigation("ObraArte");
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("ImpressioApi_.Domain.Model.ObraArteModel", b =>
-                {
-                    b.Navigation("UsuariosFavoritaram");
                 });
 
             modelBuilder.Entity("ImpressioApi_.Domain.Model.UsuarioModel", b =>
