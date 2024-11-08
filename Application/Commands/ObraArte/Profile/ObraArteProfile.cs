@@ -1,6 +1,6 @@
 using AutoMapper;
-//using ImpressioApi_.Application.Commands.ObraArte.Read;
 using ImpressioApi_.Application.Commands.ObraArte.Write;
+using ImpressioApi_.Application.Commands.Usuario.Read;
 using ImpressioApi_.Domain.DTO.Queries;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Model;
@@ -22,8 +22,8 @@ public class ObraArteProfile: AutoMapper.Profile
         //     .ForMember(dest => dest.ImagemUsuario, opt => opt.MapFrom(src => src.ImagemUsuario))
         //     .ForMember(dest => dest.Publico, opt => opt.MapFrom(src => src.Publico));
         // CreateMap<ExcluirObraArteCommand, ObraArteModel>().ReverseMap();
-        // CreateMap<ObterObraArteCommand, ObterObraArteParametrosDTO>().ReverseMap();
-        // CreateMap<ObterObraArteResultadoDTO, ObterObraArteRespostaDTO>().ReverseMap();
-        // CreateMap<PaginacaoResposta<ObterObraArteResultadoDTO>, PaginacaoResposta<ObterObraArteRespostaDTO>>();
+        CreateMap<ObterObraArteCommand, ObterObraArteParametrosDTO>().ReverseMap();
+        CreateMap<ObterObraArteResultadoDTO, ObterObraArteRespostaDTO>().ReverseMap();
+        CreateMap<PaginacaoResposta<ObterObraArteResultadoDTO>, PaginacaoResposta<ObterObraArteRespostaDTO>>();
     }
 }
