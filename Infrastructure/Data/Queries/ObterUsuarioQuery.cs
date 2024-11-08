@@ -40,6 +40,21 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
     return paginacao;
   }
 
+  public async Task<ObterUsuarioResultadoDTO?> ObterUsuarioById(int idUsuario)
+  {
+    var sql = @"SELECT 
+                  id_usuario
+                FROM t_usuario
+                WHERE id_usuario = @IdUsuario
+              ";
+
+    var parametros = new { IdUsuario = idUsuario };
+
+    var usuario = await _connection.QueryFirstOrDefaultAsync<ObterUsuarioResultadoDTO>(sql, parametros);
+
+    return usuario;
+  }
+
 
   private async Task<IEnumerable<ObterUsuarioResultadoDTO>> BuscarUsuarios(ObterUsuarioParametrosDTO parametros)
   {

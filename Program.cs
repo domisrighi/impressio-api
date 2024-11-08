@@ -48,6 +48,7 @@ builder.Services.AddAuthentication(options =>
 #endregion
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IObraArteRepository, ObraArteRepository>();
 builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

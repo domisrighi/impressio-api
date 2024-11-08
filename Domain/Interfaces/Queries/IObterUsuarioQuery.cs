@@ -6,4 +6,5 @@ namespace ImpressioApi_.Domain.Interfaces.Queries;
 public interface IObterUsuarioQuery
 {
     Task<PaginacaoResposta<ObterUsuarioResultadoDTO>> ObterUsuario(ObterUsuarioParametrosDTO parametros);
+    Task<ObterUsuarioResultadoDTO?> ObterUsuarioById(int idUsuario);
 }
