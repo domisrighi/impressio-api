@@ -42,10 +42,8 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
 
   public async Task<ObterUsuarioResultadoDTO?> ObterUsuarioById(int idUsuario)
   {
-    var sql = @"SELECT 
-                  id_usuario
-                FROM t_usuario
-                WHERE id_usuario = @IdUsuario
+    var sql = @$"{GetUsuario()}
+                  WHERE id_usuario = @IdUsuario
               ";
 
     var parametros = new { IdUsuario = idUsuario };
@@ -93,4 +91,16 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
 
     return await _connection.QueryAsync<ObterUsuarioResultadoDTO>(sql, filtros);
   }
+
+  private static string GetUsuario() => @"SELECT
+                                            id_usuario AS IdUsuario,
+                                            nome_usuario AS NomeUsuario,
+                                            email_usuario AS EmailUsuario,
+                                            data_nascimento AS DataNascimento,
+                                            apelido AS Apelido,
+                                            biografia_usuario AS BiografiaUsuario,
+                                            imagem_usuario AS ImagemUsuario,
+                                            publico AS Publico
+                                          FROM t_usuario
+                                        ";
 }

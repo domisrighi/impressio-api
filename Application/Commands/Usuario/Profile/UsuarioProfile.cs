@@ -23,6 +23,7 @@ public class UsuarioProfile: AutoMapper.Profile
             .ForMember(dest => dest.Publico, opt => opt.MapFrom(src => src.Publico));
         CreateMap<ExcluirUsuarioCommand, UsuarioModel>().ReverseMap();
         CreateMap<ObterUsuarioCommand, ObterUsuarioParametrosDTO>().ReverseMap();
+        CreateMap<ObterUsuarioByIdCommand, ObterUsuarioByIdParametrosDTO>().ReverseMap();
         CreateMap<ObterUsuarioResultadoDTO, ObterUsuarioRespostaDTO>().ReverseMap();
         CreateMap<PaginacaoResposta<ObterUsuarioResultadoDTO>, PaginacaoResposta<ObterUsuarioRespostaDTO>>();
     }

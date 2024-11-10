@@ -49,6 +49,20 @@ public class UsuarioController : ImpressioController
         return Response(await _mediator.Send(command));
     }
 
+    /// <summary>
+    /// Obtém um usuário. (Buscar enviando o id do usuário)
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpGet("ObterUsuarioById")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult<ObterUsuarioRespostaDTO>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ObterUsuarioById([FromQuery] ObterUsuarioByIdCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
     ///  <summary>
     ///  Realiza a edição de um usuário.
     /// </summary>
