@@ -15,7 +15,7 @@ public class ObraArteProfile: AutoMapper.Profile
     {
         CreateMap<CadastrarObraArteCommand, ObraArteModel>().ReverseMap();
         // CreateMap<EditarObraArteCommand, ObraArteModel>().ReverseMap();
-        // CreateMap<ExcluirObraArteCommand, ObraArteModel>().ReverseMap();
+        CreateMap<ExcluirObraArteCommand, ObraArteModel>().ReverseMap();
         CreateMap<ObterObraArteCommand, ObterObraArteParametrosDTO>().ReverseMap();
         CreateMap<ObterObraArteByIdCommand, ObterObraArteByIdParametrosDTO>().ReverseMap();
         CreateMap<ObterObraArteResultadoDTO, ObterObraArteRespostaDTO>().ReverseMap();
