@@ -64,6 +64,20 @@ public class ObraArteController : ImpressioController
         return Response(await _mediator.Send(command));
     }
 
+    ///  <summary>
+    ///  Realiza a edição de uma obra de arte.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique errors.</response>
+    [HttpPut("EditarObraDeArte")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> EditarObraDeArte(EditarObraArteCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
     /// <summary>
     /// Realiza a exclusão de uma obra de arte.
     /// </summary>
