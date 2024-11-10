@@ -10,7 +10,6 @@ namespace ImpressioApi_.Application.Commands.ObraArte.Read;
 
 public class ObterObraArteHandler: IRequestHandler<ObterObraArteCommand, CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>>
 {
-    private readonly IObterUsuarioQuery _obterUsuarioQuery;
     private readonly IObterObraArteQuery _obterObraArteQuery;
     private readonly IMapper _mapper;
     private ObterObraArteCommand _request = null!;
@@ -19,7 +18,6 @@ public class ObterObraArteHandler: IRequestHandler<ObterObraArteCommand, Command
 
     public ObterObraArteHandler(IObterUsuarioQuery obterUsuarioQuery, IObterObraArteQuery obterObraArteQuery, IMapper mapper)
     {
-        _obterUsuarioQuery = obterUsuarioQuery ?? throw new ArgumentNullException(nameof(obterUsuarioQuery));
         _obterObraArteQuery = obterObraArteQuery ?? throw new ArgumentNullException(nameof(obterObraArteQuery));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }

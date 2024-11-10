@@ -42,11 +42,9 @@ public class ObterObraArteQuery : IObterObraArteQuery
 
   public async Task<ObterObraArteResultadoDTO?> ObterObraDeArteById(int idObraArte)
   {
-    var sql = @"SELECT 
-                  id_obra_arte
-                FROM t_obra_arte
-                WHERE id_obra_arte = @IdObraArte
-              ";
+    var sql = @$"{BuscarObras()}
+                  WHERE id_obra_arte = @IdObraArte
+                  ";
 
     var parametros = new { IdObraArte = idObraArte };
 
@@ -65,8 +63,6 @@ public class ObterObraArteQuery : IObterObraArteQuery
                     oa.imagem_obra_arte AS ImagemObraArte,
                     oa.descricao_obra_arte AS DescricaoObraArte,
                     oa.publico AS Publico,
-                    oa.upvote AS Upvote,
-                    oa.downvote AS Downvote,
                     oa.id_usuario AS IdUsuario                    
                 FROM t_obra_arte AS oa
                 WHERE
@@ -89,4 +85,13 @@ public class ObterObraArteQuery : IObterObraArteQuery
 
     return await _connection.QueryAsync<ObterObraArteResultadoDTO>(sql, filtros);
   }
+
+  private static string BuscarObras() => @"SELECT
+                                            id_obra_arte AS IdObraArte,
+                                            imagem_obra_arte AS ImagemObraArte,
+                                            descricao_obra_arte AS DescricaoObraArte,
+                                            publico AS Publico,
+                                            id_usuario AS IdUsuario
+                                          FROM t_obra_arte
+                                          ";
 }

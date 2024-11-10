@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using ImpressioApi_.Application.Commands.ObraArte.Profile;
 using ImpressioApi_.Application.Commands.Usuario.Profile;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Interfaces.Repositories;
@@ -48,10 +49,14 @@ builder.Services.AddAuthentication(options =>
 #endregion
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
+
 builder.Services.AddScoped<IObraArteRepository, ObraArteRepository>();
 builder.Services.AddScoped<IObterObraArteQuery, ObterObraArteQuery>();
-builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
+
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
+builder.Services.AddAutoMapper(typeof(ObraArteProfile));
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg => {
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);

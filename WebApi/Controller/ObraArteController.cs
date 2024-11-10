@@ -1,5 +1,6 @@
 using AutoMapper;
 using ImpressioApi_.Application.Commands;
+using ImpressioApi_.Application.Commands.ObraArte.Read;
 using ImpressioApi_.Application.Commands.ObraArte.Write;
 using ImpressioApi_.Application.Commands.Usuario.Read;
 using ImpressioApi_.Domain.DTO.Read;
@@ -45,6 +46,20 @@ public class ObraArteController : ImpressioController
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ObterObraArte([FromQuery] ObterObraArteCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
+    /// <summary>
+    /// Obtém uma obra de arte. (Buscar enviando o id da obra de arte)
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpGet("ObterObrasDeArteById")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ObterObraArteById([FromQuery] ObterObraArteByIdCommand command)
     {
         return Response(await _mediator.Send(command));
     }

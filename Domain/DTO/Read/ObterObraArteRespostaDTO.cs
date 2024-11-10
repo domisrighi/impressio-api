@@ -6,7 +6,5 @@ public class ObterObraArteRespostaDTO
     public required string ImagemObraArte { get; set; }
     public string? DescricaoObraArte { get; set; }
     public bool Publico { get; set; }
-    public int? Upvote { get; set; }
-    public int? Downvote { get; set; }
     public int? IdUsuario { get; set; }
 }
