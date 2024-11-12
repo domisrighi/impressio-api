@@ -54,6 +54,9 @@ builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
 builder.Services.AddScoped<IObraArteRepository, ObraArteRepository>();
 builder.Services.AddScoped<IObterObraArteQuery, ObterObraArteQuery>();
 
+builder.Services.AddScoped<IObraArteFavoritaRepository, ObraArteFavoritaRepository>();
+builder.Services.AddScoped<IObterObraArteFavoritaQuery, ObterObraArteFavoritaQuery>();
+
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 builder.Services.AddAutoMapper(typeof(ObraArteProfile));
 
