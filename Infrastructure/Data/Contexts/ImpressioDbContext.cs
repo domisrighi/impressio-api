@@ -40,8 +40,6 @@ namespace ImpressioApi_.Infrastructure.Data.Contexts
                 entity.Property(o => o.ImagemObraArte).HasColumnName("imagem_obra_arte").IsRequired(true);
                 entity.Property(o => o.DescricaoObraArte).HasColumnName("descricao_obra_arte").HasMaxLength(170).IsRequired(false);
                 entity.Property(o => o.Publico).HasColumnName("publico").HasDefaultValue(true).IsRequired(true);
-                entity.Property(o => o.Upvote).HasColumnName("upvote").HasDefaultValue(0).IsRequired(false);
-                entity.Property(o => o.Downvote).HasColumnName("downvote").HasDefaultValue(0).IsRequired(false);
                 entity.Property(o => o.IdUsuario).HasColumnName("id_usuario").IsRequired(true);
 
                 entity.HasOne(o => o.Usuario).WithMany(u => u.ObrasArte).HasForeignKey(o => o.IdUsuario).HasConstraintName("fk_usuario_obras_arte").OnDelete(DeleteBehavior.Cascade);
@@ -59,6 +57,21 @@ namespace ImpressioApi_.Infrastructure.Data.Contexts
 
                 entity.HasOne(f => f.Usuario).WithMany(u => u.ObrasFavoritadas).HasForeignKey(f => f.IdUsuario).HasConstraintName("fk_obra_favoritada_usuario").OnDelete(DeleteBehavior.Cascade);
             });
+
+            modelBuilder.Entity<ObraVotoModel>(entity =>
+            {
+                entity.ToTable("t_obra_voto");
+                entity.HasKey(v => v.IdObraVoto).HasName("pk_obra_voto");
+                entity.Property(v => v.IdObraVoto).ValueGeneratedOnAdd().HasColumnName("id_obra_voto");
+                entity.Property(v => v.IdObraArte).HasColumnName("id_obra_arte").IsRequired(true);
+                entity.Property(v => v.IdUsuario).HasColumnName("id_usuario").IsRequired(true);
+                entity.Property(v => v.Voto).HasColumnName("voto").IsRequired(true);
+
+                entity.HasOne(v => v.ObraArte).WithMany(o => o.Votos).HasForeignKey(v => v.IdObraArte).HasConstraintName("fk_obra_voto_obra_arte").OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(v => v.Usuario).WithMany(u => u.Votos).HasForeignKey(v => v.IdUsuario).HasConstraintName("fk_obra_voto_usuario").OnDelete(DeleteBehavior.Cascade);
+            });
+
 
             base.OnModelCreating(modelBuilder);
         }

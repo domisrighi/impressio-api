@@ -41,21 +41,14 @@ public class EditarUsuarioHandler: IRequestHandler<EditarUsuarioCommand, Command
                 return _result.AdicionarErros(_request.ObterErros());
             }
 
-            var usuario = await _obterUsuarioQuery.ObterUsuario(
-                new ObterUsuarioParametrosDTO
-                {
-                    IdUsuario = _request.IdUsuario,
-                    ItensPorPagina = 1
-                }
-            );
+            var usuario = await _obterUsuarioQuery.ObterUsuarioById(_request.IdUsuario);
 
-            var usuarioDados = usuario.Registros.FirstOrDefault();
-            if (usuarioDados == null)
+            if (usuario == null)
             {
                 return _result.AdicionarErro("Usuário não encontrado.");
             }
 
-            var usuarioModel = _mapper.Map<UsuarioModel>(usuarioDados);
+            var usuarioModel = _mapper.Map<UsuarioModel>(usuario);
 
             usuarioModel.NomeUsuario = _request.NomeUsuario ?? usuarioModel.NomeUsuario;
             usuarioModel.EmailUsuario = _request.EmailUsuario ?? usuarioModel.EmailUsuario;

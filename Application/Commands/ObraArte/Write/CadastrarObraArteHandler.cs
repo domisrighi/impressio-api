@@ -53,8 +53,6 @@ public class CadastrarObraArteHandler : IRequestHandler<CadastrarObraArteCommand
             obraArte.ImagemObraArte = request.ImagemObraArte;
             obraArte.DescricaoObraArte = request.DescricaoObraArte;
             obraArte.Publico = request.Publico;
-            obraArte.Upvote = request.Upvote;
-            obraArte.Downvote = request.Downvote;
             obraArte.IdUsuario = request.IdUsuario;
 
             _obraArteRepository.Add(obraArte);

@@ -44,11 +44,7 @@ public class EditarObraArteHandler: IRequestHandler<EditarObraArteCommand, Comma
             var obraArteModel = _mapper.Map<ObraArteModel>(obraArte);
             
             obraArteModel.DescricaoObraArte = request.DescricaoObraArte ?? obraArteModel.DescricaoObraArte;
-            if (_request.Publico)
-            {
-                obraArteModel.Publico = _request.Publico;
-            }
-            
+            obraArteModel.Publico = _request.Publico;            
 
             _obraDeArteRepository.Update(obraArteModel);
             var sucesso = await _obraDeArteRepository.UnitOfWork.Commit();

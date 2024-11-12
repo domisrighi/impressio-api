@@ -9,8 +9,6 @@ public class CadastrarObraArteCommand : Command<CommandResult>
     public required string ImagemObraArte { get; set; }
     public string? DescricaoObraArte { get; set; }
     public bool Publico { get; set; } = true;
-    public int? Upvote { get; set; } = 0;
-    public int? Downvote { get; set; } = 0;
     
     public override async Task<bool> Valida()
     {

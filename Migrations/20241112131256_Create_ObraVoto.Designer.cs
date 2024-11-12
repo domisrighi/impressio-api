@@ -3,6 +3,7 @@ using System;
 using ImpressioApi_.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ImpressioApi_.Migrations
 {
     [DbContext(typeof(ImpressioDbContext))]
-    partial class ImpressioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241112131256_Create_ObraVoto")]
+    partial class Create_ObraVoto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
