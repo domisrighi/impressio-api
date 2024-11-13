@@ -1,5 +1,6 @@
 using AutoMapper;
 using ImpressioApi_.Application.Commands;
+using ImpressioApi_.Application.Commands.ObraArteFavorita.Write;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Queries;
 using MediatR;
@@ -7,13 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ImpressioApi_.WebApi.Controller;
 
-public class FavoritarObraArteController : ImpressioController
+public class ObraArteFavoritaController : ImpressioController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
     private readonly ILogger<UsuarioController> _logger;
 
-    public FavoritarObraArteController(ILogger<UsuarioController> logger, IMapper mapper, IMediator mediator)
+    public ObraArteFavoritaController(ILogger<UsuarioController> logger, IMapper mapper, IMediator mediator)
     {
         _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -21,14 +22,28 @@ public class FavoritarObraArteController : ImpressioController
     }
     
     /// <summary>
-    /// Favorita uma obra de arte.
+    /// Adiciona uma obra de arte como favorita.
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpPost("FavoritarObraDeArte")]
+    [HttpPost]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> FavoritarObraDeArte(AdicionarObraArteFavoritaCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
+    /// <summary>
+    /// Remove uma obra de arte da lista de favoritas.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpDelete]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ExcluirObraDeArte(ExcluirObraArteFavoritaCommand command)
     {
         return Response(await _mediator.Send(command));
     }

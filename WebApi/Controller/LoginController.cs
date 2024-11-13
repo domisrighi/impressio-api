@@ -24,7 +24,7 @@ public class LoginController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpPost("Login")]
+    [HttpPost]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Login(LoginUsuarioCommand command)

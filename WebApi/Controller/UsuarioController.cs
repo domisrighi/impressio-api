@@ -27,7 +27,7 @@ public class UsuarioController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpPost("CadastrarUsuario")]
+    [HttpPost]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CadastrarUsuario(CadastrarUsuarioCommand command)
@@ -36,11 +36,11 @@ public class UsuarioController : ImpressioController
     }
 
     /// <summary>
-    /// Obtém todos os usuários. (É possível filtrar conforme campos informados, caso queira todos os usuários basta não passar nenhum filtro)
+    /// Busca todos os usuários. (É possível filtrar conforme campos informados, caso queira todos os usuários basta não passar nenhum filtro)
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("ObterUsuario")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterUsuarioRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -50,11 +50,11 @@ public class UsuarioController : ImpressioController
     }
 
     /// <summary>
-    /// Obtém um usuário. (Buscar enviando o id do usuário)
+    /// Busca um usuário pelo id.
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("ObterUsuarioById")]
+    [HttpGet("GetById={idUsuario}")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<ObterUsuarioRespostaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -68,7 +68,7 @@ public class UsuarioController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique errors.</response>
-    [HttpPut("EditarUsuario")]
+    [HttpPut]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -82,7 +82,7 @@ public class UsuarioController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpDelete("ExcluirUsuario")]
+    [HttpDelete]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]

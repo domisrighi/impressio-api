@@ -28,7 +28,7 @@ public class ObraArteController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpPost("CadastrarObraArte")]
+    [HttpPost]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CadastrarObraDeArte(CadastrarObraArteCommand command)
@@ -37,11 +37,11 @@ public class ObraArteController : ImpressioController
     }
 
     /// <summary>
-    /// Obtém todos as obras de arte. (É possível filtrar conforme campos informados, caso queira todas as obras basta não passar nenhum filtro)
+    /// Busca todos as obras de arte. (É possível filtrar conforme campos informados, caso queira todas as obras basta não passar nenhum filtro)
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("ObterObrasDeArte")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -51,11 +51,11 @@ public class ObraArteController : ImpressioController
     }
 
     /// <summary>
-    /// Obtém uma obra de arte. (Buscar enviando o id da obra de arte)
+    /// Busca uma obra de arte por id.
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("ObterObrasDeArteById")]
+    [HttpGet("GetById={idObraArte}")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -69,7 +69,7 @@ public class ObraArteController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique errors.</response>
-    [HttpPut("EditarObraDeArte")]
+    [HttpPut]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
@@ -83,7 +83,7 @@ public class ObraArteController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpDelete("ExcluirObraDeArte")]
+    [HttpDelete]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]

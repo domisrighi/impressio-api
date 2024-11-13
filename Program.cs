@@ -12,20 +12,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+DotNetEnv.Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
+
 #region INICIALIZANDO O BANCO DE DADOS
-var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+var connectionString = builder.Configuration["DatabaseConnection"];
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("A string de conexão do banco de dados deve ser fornecida nas variáveis de ambiente ou no appsettings.");
+}
+
 builder.Services.AddDbContext<ImpressioDbContext>(
     opt => opt.UseNpgsql(connectionString).EnableSensitiveDataLogging(true)
 );
+#endregion
 
 // Configurando JWT
 var jwtSecret = builder.Configuration["JwtSettings:Secret"];
-
 if (string.IsNullOrEmpty(jwtSecret))
 {
-    throw new InvalidOperationException("JWT secret must be provided in the configuration.");
+    throw new InvalidOperationException("O segredo JWT deve ser fornecido nas variáveis de ambiente ou no appsettings.");
 }
 
 var key = Encoding.ASCII.GetBytes(jwtSecret);
@@ -46,7 +55,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-#endregion
+//#endregion
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
