@@ -54,7 +54,7 @@ public class UsuarioController : ImpressioController
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("GetById={idUsuario}")]
+    [HttpGet("GetById")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<ObterUsuarioRespostaDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
