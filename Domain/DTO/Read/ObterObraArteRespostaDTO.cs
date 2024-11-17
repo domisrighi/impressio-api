@@ -7,4 +7,7 @@ public class ObterObraArteRespostaDTO
     public string? DescricaoObraArte { get; set; }
     public bool Publico { get; set; }
     public int? IdUsuario { get; set; }
+    public string? NomeUsuario { get; set; }
+    public string? Apelido { get; set; }
+    public string? ImagemUsuario { get; set; }
 }
