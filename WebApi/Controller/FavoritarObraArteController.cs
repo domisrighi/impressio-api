@@ -1,5 +1,6 @@
 using AutoMapper;
 using ImpressioApi_.Application.Commands;
+using ImpressioApi_.Application.Commands.ObraArteFavorita.Read;
 using ImpressioApi_.Application.Commands.ObraArteFavorita.Write;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Queries;
@@ -44,6 +45,20 @@ public class ObraArteFavoritaController : ImpressioController
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ExcluirObraDeArte(ExcluirObraArteFavoritaCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
+    /// <summary>
+    /// Busca todas as obras de arte favoritas de um usuário.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpGet]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ObterObrasArteFavoritas([FromQuery] ObterObraArteFavoritaCommand command)
     {
         return Response(await _mediator.Send(command));
     }

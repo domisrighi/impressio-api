@@ -1,4 +1,5 @@
 using ImpressioApi_.Application.Commands.ObraArte.Validations;
+using ImpressioApi_.Application.Commands.ObraArteFavorita.Read;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Queries;
 
