@@ -1,5 +1,6 @@
 using AutoMapper;
 using ImpressioApi_.Application.Commands;
+using ImpressioApi_.Application.Commands.RegistrarVoto.Write;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Queries;
 using MediatR;
@@ -29,6 +30,20 @@ public class RegistraVotoController : ImpressioController
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegistrarVoto(RegistrarVotoCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
+
+    /// <summary>
+    /// Remove um registro de voto sobre uma obra de arte.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpDelete]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ExcluirRegistroVoto(ExcluirRegistroVotoCommand command)
     {
         return Response(await _mediator.Send(command));
     }
