@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Text;
 using ImpressioApi_.Application.Commands.ObraArte.Profile;
 using ImpressioApi_.Application.Commands.ObraArteFavorita.Profile;
+using ImpressioApi_.Application.Commands.RegistrarVoto.Profile;
 using ImpressioApi_.Application.Commands.Usuario.Profile;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Interfaces.Repositories;
@@ -67,9 +68,13 @@ builder.Services.AddScoped<IObterObraArteQuery, ObterObraArteQuery>();
 builder.Services.AddScoped<IObraArteFavoritaRepository, ObraArteFavoritaRepository>();
 builder.Services.AddScoped<IObterObraArteFavoritaQuery, ObterObraArteFavoritaQuery>();
 
+builder.Services.AddScoped<IRegistroVotoRepository, RegistroVotoRepository>();
+builder.Services.AddScoped<IObterRegistroVotoQuery, ObterRegistroVotoQuery>();
+
 builder.Services.AddAutoMapper(typeof(UsuarioProfile));
 builder.Services.AddAutoMapper(typeof(ObraArteProfile));
 builder.Services.AddAutoMapper(typeof(ObraArteFavoritaProfile));
+builder.Services.AddAutoMapper(typeof(RegistrarVotoProfile));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(cfg => {
