@@ -64,11 +64,11 @@ public class ObraArteFavoritaController : ImpressioController
     }
 
     /// <summary>
-    /// Busca uma obra de arte favoritada de um usuário por ID.
+    /// Busca uma obra de arte favoritada pelo ID do usuário e obra de arte.
     /// </summary>
     /// <param name="command"></param>
     /// <response code="400">Erro tratado, verifique messages.</response>
-    [HttpGet("GetById")]
+    [HttpGet("GetByUsuarioEObra")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]

@@ -6,7 +6,8 @@ namespace ImpressioApi_.Application.Commands.ObraArteFavorita.Read;
 
 public class ObterObraArteFavoritaByIdCommand : PaginacaoCommand<CommandResult<PaginacaoResposta<ObterObraArteFavoritaRespostaDTO>>>
 {
-    public int IdObraFavoritada { get; set; }
+    public int IdUsuario { get; set; }
+    public int IdObraArte { get; set; }
     public override async Task<bool> Valida()
     {
         var validation = new ObterObraArteFavoritaByIdCommandValidation();

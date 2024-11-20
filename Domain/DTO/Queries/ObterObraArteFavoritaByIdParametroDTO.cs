@@ -4,5 +4,6 @@ namespace ImpressioApi_.Domain.DTO.Queries;
 
 public class ObterObraArteFavoritaByIdParametrosDTO : PaginacaoRequisicao
 {
-    public int IdObraFavoritada { get; set; }
+    public int IdUsuario { get; set; }
+    public int IdObraArte { get; set; }
 }

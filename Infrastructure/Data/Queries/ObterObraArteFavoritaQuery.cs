@@ -62,7 +62,11 @@ public class ObterObraArteFavoritaQuery : IObterObraArteFavoritaQuery
   {
     var query = await _connection.QueryAsync<ObterObraArteFavoritaResultadoDTO>(
       BuscarObrasDeArtesFavoritasById(), 
-      new { IdObraFavoritada = parametros.IdObraFavoritada }
+      new 
+      { 
+        IdUsuario = parametros.IdUsuario,
+        IdObraArte = parametros.IdObraArte
+      }
     );
 
     var paginacao = new PaginacaoResposta<ObterObraArteFavoritaResultadoDTO>(registros: query);
@@ -111,7 +115,8 @@ public class ObterObraArteFavoritaQuery : IObterObraArteFavoritaQuery
                                                           FROM t_obra_favoritada obraFavoritada
                                                           INNER JOIN t_obra_arte obraArte ON obraFavoritada.id_obra_arte = obraArte.id_obra_arte
                                                           INNER JOIN t_usuario donoObra ON obraArte.id_usuario = donoObra.id_usuario
-                                                          WHERE (@IdObraFavoritada IS NULL OR obraFavoritada.id_obra_favoritada = @IdObraFavoritada)
+                                                          WHERE (@IdUsuario IS NULL OR obraFavoritada.id_usuario = @IdUsuario)
+                                                          AND (@IdObraArte IS NULL OR obraFavoritada.id_obra_arte = @IdObraArte)
                                                           ORDER BY obraFavoritada.id_obra_favoritada
                                                           ";
 
