@@ -15,6 +15,7 @@ public class ObraArteFavoritaProfile: AutoMapper.Profile
         CreateMap<AdicionarObraArteFavoritaCommand, ObraFavoritadaModel>().ReverseMap();
         CreateMap<ExcluirObraArteFavoritaCommand, ObraFavoritadaModel>().ReverseMap();
         CreateMap<ObterObraArteFavoritaCommand, ObterObraArteFavoritaParametrosDTO>().ReverseMap();
+        CreateMap<ObterObraArteFavoritaByIdCommand, ObterObraArteFavoritaByIdParametrosDTO>().ReverseMap();
         CreateMap<ObterObraArteFavoritaResultadoDTO, ObterObraArteFavoritaRespostaDTO>().ReverseMap();
         CreateMap<PaginacaoResposta<ObterObraArteFavoritaResultadoDTO>, PaginacaoResposta<ObterObraArteFavoritaRespostaDTO>>();
     }

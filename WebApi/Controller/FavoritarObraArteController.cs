@@ -62,4 +62,18 @@ public class ObraArteFavoritaController : ImpressioController
     {
         return Response(await _mediator.Send(command));
     }
+
+    /// <summary>
+    /// Busca uma obra de arte favoritada de um usuário por ID.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <response code="400">Erro tratado, verifique messages.</response>
+    [HttpGet("GetById")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(CommandResult<PaginacaoResposta<ObterObraArteRespostaDTO>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CommandResult), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ObterObrasArteFavoritasById([FromQuery] ObterObraArteFavoritaByIdCommand command)
+    {
+        return Response(await _mediator.Send(command));
+    }
 }

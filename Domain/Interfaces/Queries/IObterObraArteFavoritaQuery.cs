@@ -8,5 +8,6 @@ namespace ImpressioApi_.Domain.Interfaces.Queries
     {
         Task<ObterObraArteFavoritaResultadoDTO?> ObterObraArteFavoritaByUsuarioEObraArte(int idObraArte, int idUsuario);
         Task<PaginacaoResposta<ObterObraArteFavoritaResultadoDTO>> ObterObrasDeArteFavoritasByUsuario(ObterObraArteFavoritaParametrosDTO parametros);
+        Task<PaginacaoResposta<ObterObraArteFavoritaResultadoDTO>> ObterObrasDeArteFavoritasByObraFavoritada(ObterObraArteFavoritaByIdParametrosDTO parametros);
     }
 }
