@@ -1,6 +1,7 @@
 using System.Data;
 using Dapper;
 using ImpressioApi_.Domain.DTO.Queries;
+using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Queries;
 using ImpressioApi_.Infrastructure.Data.Contexts;
@@ -53,6 +54,18 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
     return usuario;
   }
 
+  public async Task<ObterUsuarioRespostaDTO?> ObterPorEmail(string email)
+  {
+    var sql = @$"{GetUsuario()}
+                  WHERE email_usuario = @Email
+              ";
+
+    var parametros = new { Email = email };
+
+    var usuario = await _connection.QueryFirstOrDefaultAsync<ObterUsuarioRespostaDTO>(sql, parametros);
+
+    return usuario;
+  }
 
   private async Task<IEnumerable<ObterUsuarioResultadoDTO>> BuscarUsuarios(ObterUsuarioParametrosDTO parametros)
   {
@@ -96,6 +109,7 @@ public class ObterUsuarioQuery : IObterUsuarioQuery
                                             id_usuario AS IdUsuario,
                                             nome_usuario AS NomeUsuario,
                                             email_usuario AS EmailUsuario,
+                                            senha AS Senha,
                                             data_nascimento AS DataNascimento,
                                             apelido AS Apelido,
                                             biografia_usuario AS BiografiaUsuario,

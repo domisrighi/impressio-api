@@ -11,10 +11,7 @@ public class CadastrarUsuarioHandler : IRequestHandler<CadastrarUsuarioCommand, 
     private readonly IMapper _mapper;
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly TokenService _tokenService;
-    CadastrarUsuarioCommand _request = null!;
-    private CancellationToken _cancellationToken;
-    private CommandResult _result = null!;
-    
+
     public CadastrarUsuarioHandler(IMapper mapper, IUsuarioRepository usuarioRepository, TokenService tokenService)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -24,48 +21,46 @@ public class CadastrarUsuarioHandler : IRequestHandler<CadastrarUsuarioCommand, 
 
     public async Task<CommandResult> Handle(CadastrarUsuarioCommand request, CancellationToken cancellationToken)
     {
+        var result = new CommandResult();
+
         using var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
-        
         try
         {
-            _request = request;
-            var valida = await _request.Valida();
-            _cancellationToken = cancellationToken;
-            _result = new CommandResult();
-
-            if (!valida)
+            if (!await request.Valida())
             {
-                return _result.AdicionarErros(_request.ObterErros());
+                return result.AdicionarErros(request.ObterErros());
             }
-            
-            var senhaCriptografada = CriptografarSenha(_request.Senha);
-            var usuario = _mapper.Map<UsuarioModel>(_request);
-            usuario.Senha = senhaCriptografada;
-            
+
+            var usuario = _mapper.Map<UsuarioModel>(request);
+            if (usuario == null)
+            {
+                return result.AdicionarErro("Erro ao mapear os dados do usuário.");
+            }
+
+            usuario.Senha = CriptografarSenha(request.Senha);
+
             _usuarioRepository.Add(usuario);
-            
             var sucesso = await _usuarioRepository.UnitOfWork.Commit();
+
             if (!sucesso)
             {
-                return _result.AdicionarErro("Falha ao cadastrar usuário");
+                return result.AdicionarErro("Falha ao salvar os dados no banco de dados.");
             }
 
             var token = _tokenService.GenerateToken(usuario.EmailUsuario);
-            _result.Sucesso("Usuário cadastrado com sucesso!");
-            _result.Token = token;
-            
-            return _result;
+
+            scope.Complete();
+
+            return result.Sucesso("Usuário cadastrado com sucesso!").AdicionarToken(token);
         }
-        finally
+        catch (Exception ex)
         {
-            if (_result.Success)
-            {
-                scope.Complete();
-            }
+            Console.Error.WriteLine($"Erro ao cadastrar usuário: {ex.Message}");
+            return result.AdicionarErro("Erro interno ao cadastrar usuário.");
         }
     }
 
-    private string CriptografarSenha(string senha)
+    private static string CriptografarSenha(string senha)
     {
         return BCrypt.Net.BCrypt.HashPassword(senha);
     }

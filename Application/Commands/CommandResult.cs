@@ -4,6 +4,7 @@ public class CommandResult
 {
     public bool Success { get; set; } = true;
     public List<string> Messages { get; set; } = new();
+    public object? Dados { get; set; }
     public string? Token { get; set; }
 
     public virtual CommandResult Sucesso()
@@ -49,6 +50,12 @@ public class CommandResult
       Erro();
       Messages.AddRange(erros);
 
+      return this;
+    }
+
+    public CommandResult AdicionarToken(string token)
+    {
+      Token = token;
       return this;
     }
 }

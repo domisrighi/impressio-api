@@ -12,19 +12,29 @@ public class TokenService
         _secret = configuration["JwtSettings:Secret"] ?? throw new ArgumentNullException("JwtSettings:Secret", "JWT secret must be provided.");
     }
 
-    public string GenerateToken(string username)
+    public string GenerateToken(string EmailUsuario)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_secret);
 
-        var tokenDescriptor = new SecurityTokenDescriptor
+        try
         {
-            Subject = new ClaimsIdentity(new Claim[] { new Claim(ClaimTypes.Name, username) }),
-            Expires = DateTime.UtcNow.AddHours(8),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[] 
+                { 
+                    new Claim(ClaimTypes.Name, EmailUsuario)
+                }),
+                Expires = DateTime.UtcNow.AddHours(8),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+        catch (Exception)
+        {
+            throw new Exception();
+        }
     }
 }
