@@ -1,12 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Application",
-    "\\Domain",
     "\\Infrastructure",
-    "\\Infrastructure\\Data",
-    "\\Infrastructure\\Data\\Repositories"
+    "\\Infrastructure\\Data"
   ],
-  "SelectedNode": "\\Infrastructure\\Data\\Repositories\\FuncionarioRepository.cs",
+  "SelectedNode": "\\ImpressioApi.sln",
   "PreviewInSolutionExplorer": false
 }

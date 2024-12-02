@@ -5,7 +5,7 @@ public class RegistrarVotoCommand : Command<CommandResult>
 {
     public int IdUsuario { get; set; }
     public int IdObraArte { get; set; }
-    public VotoStatus Voto { get; set; }
+    public ReacaoStatus Voto { get; set; }
     
     public override async Task<bool> Valida()
     {
