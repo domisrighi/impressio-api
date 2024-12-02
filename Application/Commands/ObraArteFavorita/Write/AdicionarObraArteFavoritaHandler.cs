@@ -4,17 +4,16 @@ using ImpressioApi_.Domain.Interfaces.Repositories;
 using MediatR;
 using ImpressioApi_.Domain.Model;
 using ImpressioApi_.Domain.Interfaces.Queries;
-using ImpressioApi_.Domain.DTO.Queries;
 
 namespace ImpressioApi_.Application.Commands.ObraArteFavorita.Handlers;
 
 public class AdicionarObraArteFavoritaHandler : IRequestHandler<AdicionarObraArteFavoritaCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
     private readonly IObterUsuarioQuery _obterUsuarioQuery;
     private readonly IObraArteRepository _obraArteRepository;
     private readonly IObraArteFavoritaRepository _obraArteFavoritaRepository;
     private readonly IObterObraArteFavoritaQuery _obterObraArteFavoritaQuery;
+    private readonly IMapper _mapper;
     private AdicionarObraArteFavoritaCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult _result = null!;
@@ -76,6 +75,7 @@ public class AdicionarObraArteFavoritaHandler : IRequestHandler<AdicionarObraArt
             }
 
             _result.Sucesso("Obra de arte favoritada com sucesso!");
+            
             return _result;
         }
         finally

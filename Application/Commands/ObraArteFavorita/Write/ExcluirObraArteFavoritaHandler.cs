@@ -7,17 +7,15 @@ namespace ImpressioApi_.Application.Commands.ObraArteFavorita.Write;
 
 public class ExcluirObraArteFavoritaHandler : IRequestHandler<ExcluirObraArteFavoritaCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
-    private readonly IObraArteRepository _obraArteRepository;
     private readonly IObraArteFavoritaRepository _obraArteFavoritaRepository;
+    private readonly IMapper _mapper;
     private ExcluirObraArteFavoritaCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult _result = null!;
 
-    public ExcluirObraArteFavoritaHandler(IMapper mapper, IObraArteRepository obraArteRepository, IObraArteFavoritaRepository obraArteFavoritaRepository)
+    public ExcluirObraArteFavoritaHandler(IMapper mapper, IObraArteFavoritaRepository obraArteFavoritaRepository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _obraArteRepository = obraArteRepository ?? throw new ArgumentNullException(nameof(obraArteRepository));
         _obraArteFavoritaRepository = obraArteFavoritaRepository ?? throw new ArgumentNullException(nameof(obraArteFavoritaRepository));
     }
 

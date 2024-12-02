@@ -1,6 +1,4 @@
-using ImpressioApi_.Domain.Interfaces.Repositories;
 using MediatR;
-using BCrypt.Net;
 using ImpressioApi_.Application.Commands.Usuario.Write;
 using ImpressioApi_.Application.Commands;
 using System.Transactions;
@@ -8,13 +6,11 @@ using ImpressioApi_.Domain.Interfaces.Queries;
 
 public class LoginUsuarioHandler : IRequestHandler<LoginUsuarioCommand, CommandResult>
 {
-    private readonly IUsuarioRepository _usuarioRepository;
     private readonly IObterUsuarioQuery _obterUsuarioQuery;
     private readonly TokenService _tokenService;
 
-    public LoginUsuarioHandler(IUsuarioRepository usuarioRepository, IObterUsuarioQuery obterUsuarioQuery, TokenService tokenService)
+    public LoginUsuarioHandler(IObterUsuarioQuery obterUsuarioQuery, TokenService tokenService)
     {
-        _usuarioRepository = usuarioRepository ?? throw new ArgumentNullException(nameof(usuarioRepository));
         _obterUsuarioQuery = obterUsuarioQuery ?? throw new ArgumentNullException(nameof(obterUsuarioQuery));
         _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
     }
@@ -47,6 +43,7 @@ public class LoginUsuarioHandler : IRequestHandler<LoginUsuarioCommand, CommandR
             {
                 return result.AdicionarErro("Senha incorreta.");
             }
+
             if (usuario.EmailUsuario == null)
             {
                 return result.AdicionarErro("Usuário não encontrado.");

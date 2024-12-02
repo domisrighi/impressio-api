@@ -13,6 +13,7 @@ public abstract class ImpressioController : ControllerBase
         {
             return BadRequest(result);
         }
+        
         return Ok(result);
     }
 }

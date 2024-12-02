@@ -10,6 +10,8 @@ public class EditarObraArteCommandValidation : AbstractValidator<EditarObraArteC
         RuleFor(p => p.IdObraArte)
             .NotEmpty()
             .WithMessage("O Id da obra de arte é obrigatório.");
+        RuleFor(p => p.DescricaoObraArte)
+            .MaximumLength(170)
+            .WithMessage("A descrição da obra de arte não pode exceder 170 caracteres.");
     }
-    //TODO - Adicionar validações conforme campos editáveis.
 }

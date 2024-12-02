@@ -7,8 +7,8 @@ namespace ImpressioApi_.Application.Commands.ObraArte.Write;
 
 public class ExcluirObraArteHandler : IRequestHandler<ExcluirObraArteCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
     private readonly IObraArteRepository _obraArteRepository;
+    private readonly IMapper _mapper;
     private ExcluirObraArteCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult _result = null!;

@@ -58,8 +58,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-//#endregion
-
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IObterUsuarioQuery, ObterUsuarioQuery>();
 

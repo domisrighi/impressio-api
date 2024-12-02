@@ -24,7 +24,7 @@ public class ObterObraArteFavoritaQuery : IObterObraArteFavoritaQuery
     var sql = @$"{BuscarObraArteFavorita()}
                   WHERE id_obra_arte = @IdObraArte
                   AND (id_usuario = @IdUsuario)
-                  ";
+              ";
 
     var parametros = new { IdObraArte = idObraArte, IdUsuario = idUsuario };
 
@@ -62,11 +62,7 @@ public class ObterObraArteFavoritaQuery : IObterObraArteFavoritaQuery
   {
     var query = await _connection.QueryAsync<ObterObraArteFavoritaResultadoDTO>(
       BuscarObrasDeArtesFavoritasById(), 
-      new 
-      { 
-        IdUsuario = parametros.IdUsuario,
-        IdObraArte = parametros.IdObraArte
-      }
+      new { IdUsuario = parametros.IdUsuario, IdObraArte = parametros.IdObraArte }
     );
 
     var paginacao = new PaginacaoResposta<ObterObraArteFavoritaResultadoDTO>(registros: query);
@@ -88,42 +84,42 @@ public class ObterObraArteFavoritaQuery : IObterObraArteFavoritaQuery
   }
 
   private static string BuscarObrasDeArtesFavoritas() => @"SELECT 
-                                                            obraFavoritada.id_obra_favoritada AS IdObraFavoritada,
-                                                            obraArte.id_obra_arte AS IdObraArte,
-                                                            obraArte.imagem_obra_arte AS ImagemObraArte,
-                                                            obraArte.descricao_obra_arte AS DescricaoObraArte,
-                                                            obraArte.id_usuario AS IdUsuario,
-                                                            donoObra.nome_usuario AS NomeUsuario,
-                                                            donoObra.apelido AS Apelido,
-                                                            donoObra.imagem_usuario AS ImagemUsuario
-                                                          FROM t_obra_favoritada obraFavoritada
-                                                          INNER JOIN t_obra_arte obraArte ON obraFavoritada.id_obra_arte = obraArte.id_obra_arte
-                                                          INNER JOIN t_usuario donoObra ON obraArte.id_usuario = donoObra.id_usuario
-                                                          WHERE (@IdUsuario IS NULL OR obraFavoritada.id_usuario = @IdUsuario)
-                                                          ORDER BY obraFavoritada.id_obra_favoritada
+                                                              obraFavoritada.id_obra_favoritada AS IdObraFavoritada,
+                                                              obraArte.id_obra_arte AS IdObraArte,
+                                                              obraArte.imagem_obra_arte AS ImagemObraArte,
+                                                              obraArte.descricao_obra_arte AS DescricaoObraArte,
+                                                              obraArte.id_usuario AS IdUsuario,
+                                                              donoObra.nome_usuario AS NomeUsuario,
+                                                              donoObra.apelido AS Apelido,
+                                                              donoObra.imagem_usuario AS ImagemUsuario
+                                                            FROM t_obra_favoritada obraFavoritada
+                                                            INNER JOIN t_obra_arte obraArte ON obraFavoritada.id_obra_arte = obraArte.id_obra_arte
+                                                            INNER JOIN t_usuario donoObra ON obraArte.id_usuario = donoObra.id_usuario
+                                                            WHERE (@IdUsuario IS NULL OR obraFavoritada.id_usuario = @IdUsuario)
+                                                            ORDER BY obraFavoritada.id_obra_favoritada
                                                           ";
 
   private static string BuscarObrasDeArtesFavoritasById() => @"SELECT 
-                                                            obraFavoritada.id_obra_favoritada AS IdObraFavoritada,
-                                                            obraArte.id_obra_arte AS IdObraArte,
-                                                            obraArte.imagem_obra_arte AS ImagemObraArte,
-                                                            obraArte.descricao_obra_arte AS DescricaoObraArte,
-                                                            obraArte.id_usuario AS IdUsuario,
-                                                            donoObra.nome_usuario AS NomeUsuario,
-                                                            donoObra.apelido AS Apelido,
-                                                            donoObra.imagem_usuario AS ImagemUsuario
-                                                          FROM t_obra_favoritada obraFavoritada
-                                                          INNER JOIN t_obra_arte obraArte ON obraFavoritada.id_obra_arte = obraArte.id_obra_arte
-                                                          INNER JOIN t_usuario donoObra ON obraArte.id_usuario = donoObra.id_usuario
-                                                          WHERE (@IdUsuario IS NULL OR obraFavoritada.id_usuario = @IdUsuario)
-                                                          AND (@IdObraArte IS NULL OR obraFavoritada.id_obra_arte = @IdObraArte)
-                                                          ORDER BY obraFavoritada.id_obra_favoritada
-                                                          ";
+                                                                  obraFavoritada.id_obra_favoritada AS IdObraFavoritada,
+                                                                  obraArte.id_obra_arte AS IdObraArte,
+                                                                  obraArte.imagem_obra_arte AS ImagemObraArte,
+                                                                  obraArte.descricao_obra_arte AS DescricaoObraArte,
+                                                                  obraArte.id_usuario AS IdUsuario,
+                                                                  donoObra.nome_usuario AS NomeUsuario,
+                                                                  donoObra.apelido AS Apelido,
+                                                                  donoObra.imagem_usuario AS ImagemUsuario
+                                                                FROM t_obra_favoritada obraFavoritada
+                                                                INNER JOIN t_obra_arte obraArte ON obraFavoritada.id_obra_arte = obraArte.id_obra_arte
+                                                                INNER JOIN t_usuario donoObra ON obraArte.id_usuario = donoObra.id_usuario
+                                                                WHERE (@IdUsuario IS NULL OR obraFavoritada.id_usuario = @IdUsuario)
+                                                                AND (@IdObraArte IS NULL OR obraFavoritada.id_obra_arte = @IdObraArte)
+                                                                ORDER BY obraFavoritada.id_obra_favoritada
+                                                              ";
 
   private static string BuscarObraArteFavorita() => @"SELECT
-                                                      id_obra_favoritada AS IdObraFavoritada,
-                                                      id_obra_arte AS IdObraArte,
-                                                      id_usuario AS IdUsuario
-                                                    FROM t_obra_favoritada
+                                                        id_obra_favoritada AS IdObraFavoritada,
+                                                        id_obra_arte AS IdObraArte,
+                                                        id_usuario AS IdUsuario
+                                                      FROM t_obra_favoritada
                                                     ";
 }

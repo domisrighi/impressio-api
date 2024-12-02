@@ -14,6 +14,6 @@ public class RegistrarVotoCommandValidation : AbstractValidator<RegistrarVotoCom
             .WithMessage("O ID da obra de arte é obrigatório.");
         RuleFor(p => p.Voto)
             .IsInEnum()
-            .WithMessage("O status do voto deve ser 'Upvote' ou 'Downvote'.");    
+            .WithMessage("O status do voto deve ser 'Gostei', 'Amei' ou 'Brilhante'.");    
     }
 }

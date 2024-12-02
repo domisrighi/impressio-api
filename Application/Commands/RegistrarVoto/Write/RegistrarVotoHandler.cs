@@ -9,11 +9,11 @@ namespace ImpressioApi_.Application.Commands.RegistrarVoto.Handlers;
 
 public class RegistrarVotoHandler : IRequestHandler<RegistrarVotoCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
     private readonly IRegistroVotoRepository _registroVotoRepository;
     private readonly IObterRegistroVotoQuery _registroVotoQuery;
     private readonly IObraArteRepository _obraArteRepository;
     private readonly IObterUsuarioQuery _obterUsuarioQuery;
+    private readonly IMapper _mapper;
 
     public RegistrarVotoHandler(IMapper mapper, IRegistroVotoRepository registroVotoRepository, IObterRegistroVotoQuery registroVotoQuery, IObraArteRepository obraArteRepository, IObterUsuarioQuery obterUsuarioQuery)
     {
@@ -73,6 +73,7 @@ public class RegistrarVotoHandler : IRequestHandler<RegistrarVotoCommand, Comman
 
             result.Sucesso("Voto registrado com sucesso!");
             scope.Complete();
+            
             return result;
         }
         catch (Exception ex)

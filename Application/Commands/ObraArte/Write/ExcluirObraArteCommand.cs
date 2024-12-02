@@ -1,5 +1,4 @@
 using ImpressioApi_.Application.Commands.ObraArte.Validations;
-using ImpressioApi_.Application.Commands.Usuario.Validations;
 
 namespace ImpressioApi_.Application.Commands.ObraArte.Write;
 

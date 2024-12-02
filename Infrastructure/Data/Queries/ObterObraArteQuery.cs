@@ -44,7 +44,7 @@ public class ObterObraArteQuery : IObterObraArteQuery
   {
     var sql = @$"{BuscarObras()}
                   WHERE id_obra_arte = @IdObraArte
-                  ";
+              ";
 
     var parametros = new { IdObraArte = idObraArte };
 
@@ -67,15 +67,15 @@ public class ObterObraArteQuery : IObterObraArteQuery
                     u.nome_usuario AS NomeUsuario,
                     u.apelido AS Apelido,
                     u.imagem_usuario AS ImagemUsuario                    
-                FROM t_obra_arte AS oa
-                LEFT JOIN t_usuario AS u ON oa.id_usuario = u.id_usuario
-                WHERE
+                  FROM t_obra_arte AS oa
+                  LEFT JOIN t_usuario AS u ON oa.id_usuario = u.id_usuario
+                  WHERE
                     (@DescricaoObraArte IS NULL OR oa.descricao_obra_arte LIKE CONCAT('%', @DescricaoObraArte, '%'))
-                    AND (@Publico IS NULL OR oa.publico = @Publico)
-                    AND (@IdUsuario IS NULL OR oa.id_usuario = @IdUsuario)
-                    ORDER BY oa.id_obra_arte
-                    OFFSET @ItensIgnorados ROWS
-                    FETCH NEXT @ItensPorPagina ROWS ONLY
+                  AND (@Publico IS NULL OR oa.publico = @Publico)
+                  AND (@IdUsuario IS NULL OR oa.id_usuario = @IdUsuario)
+                  ORDER BY oa.id_obra_arte
+                  OFFSET @ItensIgnorados ROWS
+                  FETCH NEXT @ItensPorPagina ROWS ONLY
               ";
 
     var filtros = new
@@ -99,7 +99,7 @@ public class ObterObraArteQuery : IObterObraArteQuery
                                             u.nome_usuario AS NomeUsuario,
                                             u.apelido AS Apelido,
                                             u.imagem_usuario AS ImagemUsuario                    
-                                        FROM t_obra_arte AS oa
-                                        LEFT JOIN t_usuario AS u ON oa.id_usuario = u.id_usuario
-                                          ";
+                                          FROM t_obra_arte AS oa
+                                          LEFT JOIN t_usuario AS u ON oa.id_usuario = u.id_usuario
+                                        ";
 }

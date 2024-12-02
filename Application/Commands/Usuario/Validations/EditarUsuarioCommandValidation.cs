@@ -11,5 +11,4 @@ public class EditarUsuarioCommandValidation : AbstractValidator<EditarUsuarioCom
             .NotEmpty()
             .WithMessage("O Id do usuário é obrigatório.");
     }
-    //TODO - Adicionar validações conforme campos editáveis.
 }

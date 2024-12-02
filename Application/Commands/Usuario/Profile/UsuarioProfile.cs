@@ -1,4 +1,3 @@
-using AutoMapper;
 using ImpressioApi_.Application.Commands.Usuario.Read;
 using ImpressioApi_.Application.Commands.Usuario.Write;
 using ImpressioApi_.Domain.DTO.Queries;

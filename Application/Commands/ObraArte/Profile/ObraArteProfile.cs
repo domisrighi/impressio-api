@@ -1,4 +1,3 @@
-using AutoMapper;
 using ImpressioApi_.Application.Commands.ObraArte.Read;
 using ImpressioApi_.Application.Commands.ObraArte.Write;
 using ImpressioApi_.Application.Commands.Usuario.Read;

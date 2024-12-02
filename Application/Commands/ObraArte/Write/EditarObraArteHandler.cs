@@ -1,8 +1,6 @@
 using System.Transactions;
 using AutoMapper;
-using ImpressioApi_.Domain.DTO.Queries;
 using ImpressioApi_.Domain.DTO.Write;
-using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Interfaces.Repositories;
 using ImpressioApi_.Domain.Model;
 using MediatR;
@@ -11,8 +9,8 @@ namespace ImpressioApi_.Application.Commands.ObraArte.Write;
 
 public class EditarObraArteHandler: IRequestHandler<EditarObraArteCommand, CommandResult<EditarObraArteRespostaDTO>>
 {
-    private readonly IMapper _mapper;
     private readonly IObraArteRepository _obraDeArteRepository;
+    private readonly IMapper _mapper;
     private EditarObraArteCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult<EditarObraArteRespostaDTO> _result = null!;
@@ -47,11 +45,13 @@ public class EditarObraArteHandler: IRequestHandler<EditarObraArteCommand, Comma
             obraArteModel.Publico = _request.Publico;            
 
             _obraDeArteRepository.Update(obraArteModel);
+
             var sucesso = await _obraDeArteRepository.UnitOfWork.Commit();
             if (!sucesso)
             {
                 return _result.AdicionarErro("Falha ao atualizar obra de arte.");
             }
+            
             return _result.Sucesso("Obra de arte atualizada com sucesso!");
         }
         finally

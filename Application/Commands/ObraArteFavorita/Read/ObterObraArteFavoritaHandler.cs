@@ -1,5 +1,4 @@
 using AutoMapper;
-using ImpressioApi_.Application.Commands.Usuario.Read;
 using ImpressioApi_.Domain.DTO.Queries;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Interfaces.Queries;
@@ -10,16 +9,14 @@ namespace ImpressioApi_.Application.Commands.ObraArteFavorita.Read;
 
 public class ObterObraArteFavoritaHandler: IRequestHandler<ObterObraArteFavoritaCommand, CommandResult<PaginacaoResposta<ObterObraArteFavoritaRespostaDTO>>>
 {
-    private readonly IObterObraArteQuery _obterObraArteQuery;
     private readonly IObterObraArteFavoritaQuery _obterObraArteFavoritaQuery;
     private readonly IMapper _mapper;
     private ObterObraArteFavoritaCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult<PaginacaoResposta<ObterObraArteFavoritaRespostaDTO>> _result = null!;
 
-    public ObterObraArteFavoritaHandler(IObterUsuarioQuery obterUsuarioQuery, IObterObraArteQuery obterObraArteQuery, IObterObraArteFavoritaQuery obterObraArteFavoritaQuery, IMapper mapper)
+    public ObterObraArteFavoritaHandler(IObterObraArteFavoritaQuery obterObraArteFavoritaQuery, IMapper mapper)
     {
-        _obterObraArteQuery = obterObraArteQuery ?? throw new ArgumentNullException(nameof(obterObraArteQuery));
         _obterObraArteFavoritaQuery = obterObraArteFavoritaQuery ?? throw new ArgumentNullException(nameof(obterObraArteFavoritaQuery));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }

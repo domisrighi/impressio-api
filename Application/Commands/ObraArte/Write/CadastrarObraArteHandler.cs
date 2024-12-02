@@ -5,15 +5,14 @@ using MediatR;
 using ImpressioApi_.Domain.Model;
 using ImpressioApi_.Application.Commands.ObraArte.Write;
 using ImpressioApi_.Domain.Interfaces.Queries;
-using ImpressioApi_.Domain.DTO.Queries;
 
 namespace ImpressioApi_.Application.Commands.ObraArte.Handlers;
 
 public class CadastrarObraArteHandler : IRequestHandler<CadastrarObraArteCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
     private readonly IObraArteRepository _obraArteRepository;
     private readonly IObterUsuarioQuery _obterUsuarioQuery;
+    private readonly IMapper _mapper;
     private CadastrarObraArteCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult _result = null!;
@@ -42,7 +41,6 @@ public class CadastrarObraArteHandler : IRequestHandler<CadastrarObraArteCommand
             }
 
             var usuario = await _obterUsuarioQuery.ObterUsuarioById(request.IdUsuario);
-
             if (usuario == null)
             {
                 return _result.AdicionarErro("Usuário não encontrado.");
@@ -64,6 +62,7 @@ public class CadastrarObraArteHandler : IRequestHandler<CadastrarObraArteCommand
             }
 
             _result.Sucesso("Obra de arte cadastrada com sucesso!");
+            
             return _result;
         }
         finally

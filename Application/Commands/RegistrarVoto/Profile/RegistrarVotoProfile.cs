@@ -1,9 +1,5 @@
-using AutoMapper;
 using ImpressioApi_.Application.Commands.RegistrarVoto.Write;
-using ImpressioApi_.Domain.DTO.Queries;
-using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Model;
-using ImpressioApi_.Domain.Queries;
 
 namespace ImpressioApi_.Application.Commands.RegistrarVoto.Profile;
 

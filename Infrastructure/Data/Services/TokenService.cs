@@ -9,7 +9,7 @@ public class TokenService
 
     public TokenService(IConfiguration configuration)
     {
-        _secret = configuration["JwtSettings:Secret"] ?? throw new ArgumentNullException("JwtSettings:Secret", "JWT secret must be provided.");
+        _secret = configuration["JwtSettings:Secret"] ?? throw new ArgumentNullException("JwtSettings:Secret", "O segredo JWT deve ser fornecido.");
     }
 
     public string GenerateToken(string EmailUsuario)

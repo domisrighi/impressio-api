@@ -3,9 +3,6 @@ using ImpressioApi_.Domain.DTO.Queries;
 using ImpressioApi_.Domain.DTO.Read;
 using ImpressioApi_.Domain.Interfaces.Queries;
 using MediatR;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ImpressioApi_.Application.Commands.Usuario.Read
 {

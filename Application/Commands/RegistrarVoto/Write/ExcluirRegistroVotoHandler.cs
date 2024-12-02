@@ -1,7 +1,5 @@
 using System.Transactions;
 using AutoMapper;
-using ImpressioApi_.Application.Commands.RegistrarVoto.Write;
-using ImpressioApi_.Domain.Interfaces.Queries;
 using ImpressioApi_.Domain.Interfaces.Repositories;
 using MediatR;
 
@@ -9,19 +7,15 @@ namespace ImpressioApi_.Application.Commands.RegistrarVoto.Write;
 
 public class ExcluirRegistroVotoHandler : IRequestHandler<ExcluirRegistroVotoCommand, CommandResult>
 {
-    private readonly IMapper _mapper;
-    private readonly IObraArteRepository _obraArteRepository;
-    private readonly IObraArteFavoritaRepository _obraArteFavoritaRepository;
     private readonly IRegistroVotoRepository _registroVotoRepository;
+    private readonly IMapper _mapper;
     private ExcluirRegistroVotoCommand _request = null!;
     private CancellationToken _cancellationToken;
     private CommandResult _result = null!;
 
-    public ExcluirRegistroVotoHandler(IMapper mapper, IObraArteRepository obraArteRepository, IObraArteFavoritaRepository obraArteFavoritaRepository, IRegistroVotoRepository registroVotoRepository)
+    public ExcluirRegistroVotoHandler(IMapper mapper, IRegistroVotoRepository registroVotoRepository)
     {
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _obraArteRepository = obraArteRepository ?? throw new ArgumentNullException(nameof(obraArteRepository));
-        _obraArteFavoritaRepository = obraArteFavoritaRepository ?? throw new ArgumentNullException(nameof(obraArteFavoritaRepository));
         _registroVotoRepository = registroVotoRepository ?? throw new ArgumentNullException(nameof(registroVotoRepository));
     }
 
